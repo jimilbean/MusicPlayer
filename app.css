@@ -1,0 +1,210 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+}
+
+.progress {
+    
+    box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.425);
+    height: 15px;
+}
+
+.bar {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(to right, #ffa7a3, #dee0f0, #8dc3fd);
+}
+body {
+    background : linear-gradient(to top, #ffdedc, #f6d9ff);
+    
+}
+
+.time-info {
+    display: flex;
+    justify-content: space-between;
+}
+.file-name {
+    text-align: center;
+    font-weight: bold;
+}
+
+.main-row {
+    margin-top: 50px;
+}
+
+.container {
+    margin:0 auto;
+    width:1200px;
+    height: 935px;
+    
+}
+.time-info{
+    margin-bottom: 20px;
+}
+
+#playList {
+    
+    border-radius: 6px;
+    padding:20px;
+    
+}
+
+#playList .item-list {
+    display:grid;
+    grid-gap:10px;
+    grid-auto-rows: 40px;
+    margin-bottom:10px;
+    min-height: 300px;
+    box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    padding:10px;
+    height: 300px;
+    overflow: auto;
+    
+}
+
+#playList .item {
+    width:100%;
+    height: 40px;
+    color:#fff;
+    background-color: #5c6bc0;
+    padding:8px 12px;
+    border-radius: 0.25rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size:14px;
+    user-select: none;
+    margin-bottom: 10px; 
+}
+
+#playList .item:hover {
+    background-color: #baa2e2;
+}
+
+#playList .item.active {
+    background-color: #9575cd;
+}
+
+.control {
+    display: flex;
+    justify-content: space-between;
+}
+
+#audioFile {
+    visibility: hidden;
+}
+
+.control-btn {
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    
+}
+
+#playbtn {
+    position: relative;
+    
+}
+
+#playbtn > .play {
+    position: absolute;
+    font-size: 40px;
+    color:#cdd3ff;
+    text-shadow: 2px 2px 2px black;
+    transition: all 0.3s;
+}
+
+#playbtn > .play:hover{
+    color:#afb8ff;
+}
+
+#playbtn > .pause {
+    font-size: 40px;
+    transition: all 0.3s;
+    color:#cdd3ff;
+    display: none;
+    text-shadow: 2px 2px 2px black;
+}
+
+#playbtn > .pause:hover{
+    color:#afb8ff;
+}
+
+.stop {  
+    color:#cdd3ff;
+    text-shadow: 2px 2px 2px black;
+    font-size: 40px;
+    transition: all 0.3s;
+}
+
+
+.stop:hover {
+    color:#afb8ff;
+}
+
+#repeat {
+    margin-top: 30px;
+    margin-right: 50px;
+    position: relative;
+}
+
+#repeat> i {
+    position: absolute;
+    font-size: 40px;
+}
+
+#repeat> i:nth-child(1){
+    opacity: 0.2;
+}
+
+#repeat> i:nth-child(2){
+    display: none;
+}
+
+#repeat> i:nth-child(3){
+    display: none;
+}
+
+
+#openDialog {
+    font-size: 30px;
+}
+
+
+
+#context {
+    position: fixed;
+    visibility: hidden;
+    top: 0;
+    left: 0;
+    width: 100px;
+    background-color: #fff;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+
+
+#context > li {
+    padding: 8px 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+#context > li:hover {
+    background-color: #3f3fff;
+    color: #fff;
+}
+
+
+#context > li:last-child {
+    border-bottom: 0;
+}

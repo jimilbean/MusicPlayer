@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>뮤직 플레이어</title>
+    <script src="Player.js"></script>
+    <script src="PlayList.js"></script>
+    <script src="app.js"></script>
+    <link rel="stylesheet" href="app.css">
+    <script src="https://kit.fontawesome.com/355b5aa3a8.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div id="playList">
+            <ul class="item-list">
+                <li class="item active">sample4.mp3</li>
+                <li class="item">sample4.mp3</li>
+                <li class="item">sample4.mp3</li>
+                <li class="item">sample4.mp3</li>
+            </ul>
+            <div class="button-row">
+                <i id="openDialog" class="far fa-plus-square"></i>
+                <input type="file" id="audioFile" accept=".mp3" multiple>
+            </div>
+        </div> <!-- end of playList -->
+
+        <div class="main-row">
+            <div id="player">
+                <div class="info">
+                    <div class="audio-info">
+                        <div class="file-name">재생할 음악이 없습니다.</div>
+                    </div>
+                    <div class="time-info">
+                        <span class="current-time">00:00:00</span>
+                        <span class="total-time">00:00:00</span>
+                    </div>
+                </div>
+                <div class="progress">
+                    <div class="bar"></div>
+                </div>
+                <audio src=""></audio>
+                <div class="control">
+                    <div class="control-btn">
+                        <div id="playbtn">
+                            <i class="play fas fa-play"></i>
+                            <i class="pause fas fa-pause"></i>
+                        </div>
+                        <i class="stop fas fa-stop"></i>
+
+                    </div>
+                    <div class="mode-btn">
+                        <div id="repeat">
+                            <i class="no fas fa-redo-alt" value="1"></i>
+                            <i class="one fas fa-redo-alt"></i>
+                            <i class="list fas fa-long-arrow-alt-right"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="visualizer" style="margin-top: 30px;">
+                    <canvas id="vCanvas" width="100%" height="300px"></canvas>
+                </div>
+            </div> <!-- end of player -->
+
+        </div> <!-- end of main-row -->
+        <ul id="context">
+            <li id="del">삭제</li>
+            <li>더미</li>
+        </ul>    
+    </div> <!-- end of container -->
+    
+
+</body>
+</html>
