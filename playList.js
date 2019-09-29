@@ -30,11 +30,11 @@ class PlayList {
 
 
         this.contextMenu.querySelector("#del").addEventListener("click", (e)=>{
-            console.log(this.contextTargetItem);
+            // console.log(this.contextTargetItem);
             let item = this.listDom.querySelector(".item-list").childNodes[this.contextTargetItem.idx];
-            console.log(item);
-            // item.remove();
+            // console.log(item);
             item.style.display = 'none';
+            if(this.currentMusic == this.contextTargetItem.idx){
             this.contextMenu.style.display = "none";
             this.app.player.playable= false;
             this.app.player.audio.pause();
@@ -43,12 +43,14 @@ class PlayList {
             this.app.player.fileName.innerHTML = '';
             this.app.player.progressBar.style.width = 0;
             this.app.player.ctx.clearRect(0, 0, this.app.player.canvas.width, this.app.player.canvas.height);
+            }
+            
             e.stopPropagation();
         });
 
         document.querySelector("body").addEventListener("click", (e)=> {
             this.contextMenu.style.visibility = "hidden";
-            this.contextTargetItem = null;
+            // this.contextTargetItem = null;
         });
     }
 
@@ -71,7 +73,7 @@ class PlayList {
 
     }
 
-
+    
 
     addList(files) {
         files.forEach(file => {
@@ -95,9 +97,6 @@ class PlayList {
                 this.contextMenu.style.visibility = "visible";
                 this.contextMenu.style.display = "block";
             });
-
-
-            
 
             item.innerHTML = file.name;
             this.itemList.appendChild(item);
