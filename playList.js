@@ -5,7 +5,7 @@ class PlayList {
         this.itemList = this.listDom.querySelector(".item-list");
         this.addBtn = this.listDom.querySelector("#openDialog");
         this.fileInput = this.listDom.querySelector("#audioFile");
-
+ 
         this.itemList.innerHTML = "";
         this.fileList = []; //플레이리스트 상에 있는 음악파일들을 저장
         this.playIdx = null; //현재 재생중인 음악의 인덱스를 저장
@@ -14,6 +14,9 @@ class PlayList {
 
         this.contextMenu = document.querySelector("#context");
         this.contextTargetItem = null;
+
+
+        this.del = document.querySelector("#del");
 
         this.addListener();
     }
@@ -28,6 +31,18 @@ class PlayList {
 
         this.contextMenu.querySelector("#del").addEventListener("click", (e)=>{
             console.log(this.contextTargetItem);
+            let item = this.listDom.querySelector(".item-list").childNodes[this.contextTargetItem.idx];
+            console.log(item);
+            // item.remove();
+            item.style.display = 'none';
+            this.contextMenu.style.display = "none";
+            this.app.player.playable= false;
+            this.app.player.audio.pause();
+            this.app.player.currentSpan.innerHTML = '00:00:00';
+            this.app.player.totalSpan.innerHTML = '00:00:00';
+            this.app.player.fileName.innerHTML = '';
+            this.app.player.progressBar.style.width = 0;
+            this.app.player.ctx.clearRect(0, 0, this.app.player.canvas.width, this.app.player.canvas.height);
             e.stopPropagation();
         });
 
@@ -78,7 +93,11 @@ class PlayList {
                 this.contextMenu.style.top = e.pageY + "px";
                 this.contextMenu.style.left = e.pageX + "px";
                 this.contextMenu.style.visibility = "visible";
+                this.contextMenu.style.display = "block";
             });
+
+
+            
 
             item.innerHTML = file.name;
             this.itemList.appendChild(item);
