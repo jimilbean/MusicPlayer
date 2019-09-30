@@ -30,9 +30,12 @@ class PlayList {
 
 
         this.contextMenu.querySelector("#del").addEventListener("click", (e)=>{
-            // console.log(this.contextTargetItem);
+            let now = this.fileList.findIndex(x=> x.idx == this.contextTargetItem.idx);
+            this.fileList.splice(now,  1);
+            
+            console.log(this.contextTargetItem);
             let item = this.listDom.querySelector(".item-list").childNodes[this.contextTargetItem.idx];
-            // console.log(item);
+            console.log(item);
             item.style.display = 'none';
             if(this.currentMusic == this.contextTargetItem.idx){
             this.contextMenu.style.display = "none";
@@ -52,6 +55,43 @@ class PlayList {
             this.contextMenu.style.visibility = "hidden";
             // this.contextTargetItem = null;
         });
+        this.itemList.addEventListener("dragover", this.fileDrop.bind(this));
+        this.itemList.addEventListener("drop", this.itemDrop.bind(this));
+    }
+
+    itemDrop(e){
+        let data = e.dataTransfer.getData("idx");
+        if(data != ""){
+            e.stopPropagation();
+            e.preventDefault();
+            console.log("아이템 드랍");
+            let y = e.clientY; //마우스가 드랍된 y의 좌표를 구한다.
+            
+            let target = -1;
+        
+            for(let i = 0; i < this.fileList.length; i++){
+                console.log(y, this.fileList[i].dom.getBoundingClientRect().top);
+                if(this.fileList[i].dom.getBoundingClientRect().top > y){
+                    target = i;
+                    break;
+                }
+            }
+            console.log(target);
+            //find는 해당 조건을 만족하는 것이 나오면 true를 반환하는 거
+            let moveItem = this.fileList.find(x => x.idx == data * 1);
+            if(target >= 0){
+                this.itemList.insertBefore(moveItem.dom, this.fileList[target].dom);
+            }else {
+                this.itemList.appendChild(moveItem.dom);
+            }
+
+            this.fileList.sort((a, b) => {
+                return a.dom.getBoundingClientRect().top - b.dom.getBoundingClientRect().top
+            });
+
+        }else {
+            console.log("파일 드랍 밑으로 이벤트 전파");
+        }
     }
 
     fileDragOver(e){
@@ -86,6 +126,14 @@ class PlayList {
             item.addEventListener("dblclick", (e) => {
                 let data = this.fileList.find(x => x.idx == obj.idx);
                 this.playItem(data);
+            });
+
+            item.setAttribute("draggable", true);
+            // item.removeAttribute("draggable") 
+
+            item.addEventListener("dragstart", (e)=> {
+                e.dataTransfer.setData("idx", obj.idx);
+                e.dataTransfer.setDragImage(e.target, 0, 0);
             });
 
             item.addEventListener("contextmenu", (e)=> {
