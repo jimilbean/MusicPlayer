@@ -81,6 +81,7 @@ body {
     font-size:14px;
     user-select: none;
     margin-bottom: 10px; 
+    transition: all 1s;
 }
 
 #playList .item:hover {

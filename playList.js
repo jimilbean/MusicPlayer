@@ -79,9 +79,18 @@ class PlayList {
             console.log(target);
             //find는 해당 조건을 만족하는 것이 나오면 true를 반환하는 거
             let moveItem = this.fileList.find(x => x.idx == data * 1);
+
             if(target >= 0){
+            moveItem.dom.style.opacity = '0';
+            setTimeout(function(){
+                moveItem.dom.style.opacity = '1';
+            }, 500);
                 this.itemList.insertBefore(moveItem.dom, this.fileList[target].dom);
             }else {
+                moveItem.dom.style.opacity = '0';
+                setTimeout(function(){
+                    moveItem.dom.style.opacity = '1';
+                }, 500);
                 this.itemList.appendChild(moveItem.dom);
             }
 
